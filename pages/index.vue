@@ -3,7 +3,6 @@
     <div>
       <ul class="resultItems">
         <li class="resultItem" v-for="item in results" :key="item.id">
-          <img :src="item.Item.mediumImageUrls[0].imageUrl" class="imgStyle">
           <dl class="dataStyle">
             <dt>
               <a :href="item.Item.itemUrl">
@@ -22,7 +21,7 @@
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
-
+import rakuten from '@/plugins/axios/modules/search'
 export default {
   components: {
     AppLogo
@@ -33,11 +32,8 @@ export default {
     }
   },
   async asyncData({ app }) {
-    const baseUrl = 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?'
-    const appId = 'applicationId=1056344337549700252'
-    const keyword = '&keyword=志岐回' 
-    const getUrl = encodeURI(baseUrl + appId + keyword)
-    const response = await app.$axios.$get(getUrl)
+    const response = await rakuten.search("test")
+    console.log(response.Items)
     return {
       results: response.Items
     }
