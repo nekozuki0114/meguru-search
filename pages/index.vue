@@ -35,7 +35,7 @@ export default {
   async asyncData({ app }) {
     const baseUrl = 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?'
     const appId = 'applicationId=1056344337549700252'
-    const keyword = '&keyword=回' // 回以外認めません
+    const keyword = '&keyword=志岐回' 
     const getUrl = encodeURI(baseUrl + appId + keyword)
     const response = await app.$axios.$get(getUrl)
     return {
